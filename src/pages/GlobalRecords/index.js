@@ -5,18 +5,21 @@ import React from "react";
 import { Record } from "components/Record";
 
 // Misc
-import { data } from "components/Record/data";
-
+import { useItemData } from '../../services/APIContextProvider'
 // Component
 function GlobalRecords() {
+  const { results: records, status } = useItemData();
   return (
     <div className="aura-page aura-global_records">
       <h1>Top Records of 2020</h1>
 
       <div className="aura-page-content">
-        {data.map((record) => {
-          return <Record key={record.id} data={record} />;
-        })}
+        {status !== "ERROR" ? 
+          records.map((record) => {
+            return <Record key={record.id} data={record} />;
+          }) :
+          <div>{records}</div>
+        }
       </div>
     </div>
   );

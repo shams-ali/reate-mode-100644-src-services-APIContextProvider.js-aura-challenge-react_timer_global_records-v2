@@ -3,7 +3,7 @@ import "core-js/stable"; // Babel polyfills: https://github.com/zloirock/core-js
 import "regenerator-runtime/runtime"; // Babel polyfills: https://github.com/zloirock/core-js#babel
 import React from "react";
 import "./styles.scss"; // App-level styles
-
+import APIContextProvider from '../services/APIContextProvider'
 // Components
 import { BrowserRouter, withRouter } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -21,9 +21,11 @@ function App() {
 
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <Routes routes={routes} />
-      </BrowserRouter>
+      <APIContextProvider>
+        <BrowserRouter>
+          <Routes routes={routes} />
+        </BrowserRouter>
+      </APIContextProvider>
     </Provider>
   );
 }

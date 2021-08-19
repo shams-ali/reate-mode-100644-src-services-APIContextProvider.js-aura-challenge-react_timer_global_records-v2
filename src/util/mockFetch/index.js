@@ -1,7 +1,7 @@
 import { data } from "components/Record/data";
 
 // Util
-export function mockFetch() {
+const mockFetch = () => {
   return new Promise((resolve, reject) => {
     const timeout = () => {
       const error = new Error(
@@ -17,3 +17,5 @@ export function mockFetch() {
     setTimeout(timeout, 2000);
   });
 }
+
+export default mockFetch;
